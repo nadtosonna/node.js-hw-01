@@ -11,11 +11,11 @@ const listContacts = async() => {
 const getContactById = async(contactId) => {
     const data = await listContacts();
     const contact = data?.find((contact) => contact.id === contactId);
-    return contact;
+    return contact || null;
 }
 
 const updateListContacts = async (contacts) => {
-    await fs.writeFile(contactsPath, JSON.stringify(contacts));
+    await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
 }
 
 const removeContact = async (contactId) => {
